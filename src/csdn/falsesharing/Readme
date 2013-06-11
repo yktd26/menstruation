@@ -1,0 +1,10 @@
+In my previous post on False Sharing I suggested it can be avoided by padding the cache line with unused longfields.  
+It seems Java 7 got clever and eliminated or re-ordered the unused fields, thus re-introducing false sharing.  
+I’ve experimented with a number of techniques on different platforms and found the following code to be the most reliable.
+
+With this code I get similar performance results to those stated in the previous False Sharing article.  
+The padding inPaddedAtomicLong above can be commented out to see the false sharing effect.
+I think we should all lobby the powers that be inside Oracle to have intrinsics added to the language so we can have cache line aligned and padded atomic classes.  
+This and some other low-level changes would help make Java a real concurrent programming language.  
+We keep hearing them say multi-core is coming.   
+I say it is here and Java needs to catch up.
